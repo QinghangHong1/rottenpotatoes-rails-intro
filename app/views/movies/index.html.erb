@@ -15,15 +15,14 @@
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>
-	    
-
-	    <th ><%= link_to 'Movie Title', movies_path(:target=>'title' %></th>
+	    <th class="<%=@title_header%>"><%= link_to 'Movie Title', movies_path(:target=>'title', :ratings=>@ratings_to_show_hash), :id => "title_header"%></th>
       <th>Rating</th>
       
-      <th><%= link_to 'Release Date', movies_path((:target=>'release_date' %> </th>
+      <th class='<%=@release_date_header%>'><%= link_to 'Release Date', movies_path(:target=>'release_date', :ratings=>@ratings_to_show_hash), :id => "release_date_header"%> </th>
       <th>More Info</th>
     </tr>
   </thead>
+  
   <tbody>
     <% @movies.each do |movie| %>
       <tr>
@@ -44,3 +43,8 @@
   </tbody>
 </table>
 <%= link_to 'Add new movie', new_movie_path, :class => 'btn btn-primary' %>
+
+<%= debug(params[:target]) %>
+<%= debug(params[:ratings]) %>
+<%= debug(session[:target]) %>
+<%= debug(session[:ratings]) %>
